@@ -8,8 +8,8 @@ public class RadioTest {
     @ParameterizedTest
     @CsvSource(value = {
             "Critical path analysis; 5; 5",
-            "invalid value analysiInvs 1; -7; 0",
-            "Invalid value analysis 2; 15; 0",
+            "invalid value analysis 1; -9; 0",
+            "Invalid value analysis 2; 25; 0",
             "Boundary value analysis 1; -1; 0",
             "Boundary value analysis 2; 0; 0",
             "Boundary value analysis 3; 1; 1",
