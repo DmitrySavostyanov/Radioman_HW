@@ -2,29 +2,32 @@ package ru.netology.domain;
 
 public class Radio {
 
-    static final int maxStation = 9;//max, конечная станция
-    static final int minStation = 0;//min, начальная станция
-    private int currentStation;// текущая станция
+    static final int maxStation = 9;//max, конечная радиостанция
+    static final int minStation = 0;//min, начальная радиостанция
+    private int currentStation;// текущая радиостанция
     static final int maxVolume = 10;// max громкость
     static final int minVolume = 0;// min громкость
     private int currentVolume; // текущая громоксть
 
     public int getCurrentStation() {
         return currentStation;
-    } //получить текущую стаанцию. Возврат текущей станции
+    } //получить текущую радиостанцию. Возврат текущей радиостанции
 
     public void setCurrentStation(int currentStation) {
         this.currentStation = currentStation;
     }
 
-    public void setSelectStation(int selectStation) { //выбор номера станции напрямую
+    public void setSelectStation(int selectStation) { //выбор номера станции напрямую.
+        // Выбранная станция будет всегда находиться в обозначенном диапазоне. Если не применить сеттер такого вида
+        // пользователь может установить любое значение.
         if (selectStation < minStation || selectStation > maxStation) {
             return;
         }
         this.currentStation = selectStation;
     }
 
-    public void setNextStation() { //след станция
+    public void setNextStation() { //след радиостанция.  Принцып закольцованной конвейрной ленты которая движется по кругу.
+        // В данном случае в прямом направлении.
         if (currentStation == maxStation) {
             this.currentStation = minStation;
         } else {
@@ -32,7 +35,8 @@ public class Radio {
         }
     }
 
-    public void setPrevStation() { //пред станция
+    public void setPrevStation() { //пред радиостанция. Принцып закольцованной конвейронй ленты которая движется по кругу.
+        // В данном случае в обратном направлении.
         if (currentStation == minStation) {
             this.currentStation = maxStation;
         } else {
