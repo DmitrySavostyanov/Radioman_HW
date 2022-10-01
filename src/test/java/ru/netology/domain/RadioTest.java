@@ -36,6 +36,7 @@ public class RadioTest {
     }, delimiter = ';')
     void setNextStation(String nameTest, int oldCurrentStation, int expectedStation) {
         Radio radio = new Radio(10);
+        Radio radio2 = new Radio();
         radio.setCurrentStation(oldCurrentStation);
         radio.setNextStation();
         Assertions.assertEquals(radio.getCurrentStation(), expectedStation);
@@ -51,6 +52,7 @@ public class RadioTest {
     }, delimiter = ';')
     void setPrevCurrentStation(String nameTest, int oldCurrentStation, int expectedStation) {
         Radio radio = new Radio(10);
+        Radio radio2 = new Radio();
         radio.setCurrentStation(oldCurrentStation);
         radio.setPrevStation();
         Assertions.assertEquals(radio.getCurrentStation(), expectedStation);
