@@ -4,10 +4,20 @@ public class Radio {
 
     static final int maxStation = 9;//max, конечная радиостанция
     static final int minStation = 0;//min, начальная радиостанция
+    private int quantityStation = 10;// количество радиостанций
     private int currentStation;// текущая радиостанция
-    static final int maxVolume = 10;// max громкость
+    static final int maxVolume = 100;// max громкость
     static final int minVolume = 0;// min громкость
     private int currentVolume; // текущая громоксть
+
+
+    public Radio() {
+    }//добавил конструктор Radio для задания желаемого кол-ва станиций
+
+    public Radio(int quantityStation) {
+        this.quantityStation = quantityStation;
+    }//добавил конструктор Radio с кол-вом станиций по умолчанию = 10
+
 
     public int getCurrentStation() {
         return currentStation;
@@ -66,4 +76,11 @@ public class Radio {
         this.currentVolume = currentVolume - 1;
     }
 
+    public int getQuantityStation() {
+        return quantityStation;
+    }
+
+    public void setQuantityStation(int quantityStation) {
+        this.quantityStation = quantityStation;
+    }
 }
