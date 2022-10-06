@@ -19,10 +19,9 @@ public class RadioTest {
             "Boundary value analysis 6; 10; 0",
     }, delimiter = ';')
     void setSelectStation(String nameTest, int inputSelectStation, int expectedStation) {
-        Radio radio = new Radio(10);
-        Radio radio2 = new Radio();
+        Radio radio = new Radio();
 
-        radio.setSelectStation(inputSelectStation);
+        radio.setCurrentStation(inputSelectStation);
         Assertions.assertEquals(radio.getCurrentStation(), expectedStation);
     }
 
@@ -35,8 +34,7 @@ public class RadioTest {
             "Boundary value analysis 4; 9; 0",
     }, delimiter = ';')
     void setNextStation(String nameTest, int oldCurrentStation, int expectedStation) {
-        Radio radio = new Radio(10);
-        Radio radio2 = new Radio();
+        Radio radio = new Radio();
         radio.setCurrentStation(oldCurrentStation);
         radio.setNextStation();
         Assertions.assertEquals(radio.getCurrentStation(), expectedStation);
@@ -51,10 +49,22 @@ public class RadioTest {
             "Boundary value analysis 4; 9; 8",
     }, delimiter = ';')
     void setPrevCurrentStation(String nameTest, int oldCurrentStation, int expectedStation) {
-        Radio radio = new Radio(10);
-        Radio radio2 = new Radio();
+        Radio radio = new Radio();
         radio.setCurrentStation(oldCurrentStation);
         radio.setPrevStation();
+        Assertions.assertEquals(radio.getCurrentStation(), expectedStation);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "value analysis, 20 stations; 20; 15; 15",
+    }, delimiter = ';')
+
+    void setSelectStationCustomSetting(String nameTest, int counterStation, int inputSelectStation, int expectedStation) {
+        //Radio radio = new Radio(); если применить конструктор с параметрами по дефолту, то будет ошибка так как ожидаемый резултат должен быть = 0
+        Radio radio = new Radio(counterStation); // корректный конструктор, который принимает любое значение о кол-ве станций от ползователя.
+        // В данном случае создали радио с 20 станциями (номер макс: кол-во -1 = 19). Выбрали 15-ую, Её и ожидаем получить.
+        radio.setCurrentStation(inputSelectStation);
         Assertions.assertEquals(radio.getCurrentStation(), expectedStation);
     }
 
@@ -67,7 +77,7 @@ public class RadioTest {
             "Boundary value analysis 4; 100; 100",
     }, delimiter = ';')
     void setVolumeUp(String nameTest, int oldCurrentVolume, int expectedVolume) {
-        Radio radio = new Radio(10);
+        Radio radio = new Radio();
         radio.setCurrentVolume(oldCurrentVolume);
         radio.setVolumeUp();
         Assertions.assertEquals(radio.getCurrentVolume(), expectedVolume);
@@ -82,11 +92,25 @@ public class RadioTest {
             "Boundary value analysis 4; 100; 99",
     }, delimiter = ';')
     void setVolumeDown(String nameTest, int oldCurrentVolume, int expectedVolume) {
-        Radio radio = new Radio(10);
+        Radio radio = new Radio();
         radio.setCurrentVolume(oldCurrentVolume);
         radio.setVolumeDown();
         Assertions.assertEquals(radio.getCurrentVolume(), expectedVolume);
     }
 
 
-}
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
